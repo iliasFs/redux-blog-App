@@ -1,10 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "@reduxjs/toolkit";
+import { sub } from "date-fns";
+
 const initialState = [
   {
     id: "1",
     title: "Learning Redux Toolkit",
     content: "I've heard good things.",
+    date: sub(new Date(), { minutes: 10 }).toISOString(),
+    reactions: {
+      thumbsUp: 0,
+      wow: 0,
+      heart: 0,
+      rocket: 0,
+      coffee: 0,
+    },
   },
 
   {
@@ -12,6 +22,14 @@ const initialState = [
     title: "Slices",
     content:
       "In Redux, a slice refers to a portion of the global state managed by the Redux store.",
+    date: sub(new Date(), { minutes: 10 }).toISOString(),
+    reactions: {
+      thumbsUp: 0,
+      wow: 0,
+      heart: 0,
+      rocket: 0,
+      coffee: 0,
+    },
   },
 ];
 
@@ -30,7 +48,15 @@ const postsSlice = createSlice({
             id: nanoid(),
             title,
             content,
+            date: new Date().toISOString(),
             userId,
+            reactions: {
+                thumbsUp: 0,
+                wow: 0,
+                heart: 0,
+                rocket: 0,
+                coffee: 0
+            }
           },
         };
       },
